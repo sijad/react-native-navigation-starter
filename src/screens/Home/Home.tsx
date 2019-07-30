@@ -1,5 +1,5 @@
-import React from 'react';
-import { Options } from 'react-native-navigation';
+import React, { useCallback } from 'react';
+import { Options, Navigation } from 'react-native-navigation';
 import { ScreenProps } from '../../types';
 import {
   SafeAreaView,
@@ -7,7 +7,7 @@ import {
   ScrollView,
   View,
   Text,
-  StatusBar,
+  Button,
 } from 'react-native';
 import {
   Header,
@@ -20,44 +20,53 @@ import {
 interface HomeProps extends ScreenProps {}
 
 export function Home({ componentId }: HomeProps) {
+  const handlePushScreen = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        name: 'ScreenWithTopButton',
+      },
+    });
+  }, [componentId]);
+
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}
-        >
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+    <SafeAreaView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}
+      >
+        <Header />
+        {global.HermesInternal == null ? null : (
+          <View style={styles.engine}>
+            <Text style={styles.footer}>Engine: Hermes</Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+        )}
+        <View style={styles.body}>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Push new screen</Text>
+            <Button title="PUSH SCREEN" onPress={handlePushScreen} />
+          </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>See Your Changes</Text>
+            <Text style={styles.sectionDescription}>
+              <ReloadInstructions />
+            </Text>
+          </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Debug</Text>
+            <Text style={styles.sectionDescription}>
+              <DebugInstructions />
+            </Text>
+          </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Learn More</Text>
+            <Text style={styles.sectionDescription}>
+              Read the docs to discover what to do next:
+            </Text>
+          </View>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
