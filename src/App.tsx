@@ -1,5 +1,6 @@
 import { Navigation } from 'react-native-navigation';
 import * as screens from './screens';
+import { loadIcons } from './icons';
 
 function setDefaultOptions() {
   Navigation.setDefaultOptions({
@@ -17,6 +18,8 @@ Object.keys(screens).forEach(screenKey => {
 });
 
 Navigation.events().registerAppLaunchedListener(async () => {
+  await loadIcons();
+
   setDefaultOptions();
   Navigation.setRoot({
     root: {

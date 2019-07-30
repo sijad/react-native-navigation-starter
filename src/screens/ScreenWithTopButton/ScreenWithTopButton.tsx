@@ -3,6 +3,8 @@ import { Options, Navigation } from 'react-native-navigation';
 import { ScreenProps } from '../../types';
 import { SafeAreaView, StyleSheet, View, Button } from 'react-native';
 import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
+import { getIcon } from '../../icons';
+import { useNavigationButtonPressed } from '../../hooks';
 
 interface HomeProps extends ScreenProps {}
 
@@ -10,6 +12,12 @@ export function ScreenWithTopButton({ componentId }: HomeProps) {
   const handlePopScreen = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
+
+  useNavigationButtonPressed(componentId, event => {
+    if (event.buttonId === 'show-alert') {
+      alert('Hello!');
+    }
+  });
 
   return (
     <SafeAreaView style={styles.page}>
@@ -26,6 +34,13 @@ ScreenWithTopButton.options = (): Options => ({
     title: {
       text: 'Other Screen',
     },
+    rightButtons: [
+      {
+        id: 'show-alert',
+        text: 'Show Alert',
+        icon: getIcon('warning'),
+      },
+    ],
   },
 });
 
