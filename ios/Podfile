@@ -30,6 +30,8 @@ target 'rnnv3example' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+
   target 'rnnv3exampleTests' do
     inherit! :search_paths
     # Pods for testing
