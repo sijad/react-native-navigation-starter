@@ -3,7 +3,7 @@ import { Options, Navigation } from 'react-native-navigation';
 import { ScreenProps } from '../../types';
 import { SafeAreaView, StyleSheet, View, Button } from 'react-native';
 import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
-import { getIcon } from '../../icons';
+import { getIcon } from '../../commons';
 import { useNavigationButtonPressed } from '../../hooks';
 
 interface HomeProps extends ScreenProps {}
