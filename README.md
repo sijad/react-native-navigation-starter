@@ -1,3 +1,7 @@
+# Depricated
+
+please yse `react-native init MyApp --template rnn-typescript`
+
 # RNN-v3 Starter
 
 ## Usage
